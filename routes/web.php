@@ -18,10 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('index','index');
-Route::post('add',[UserController::class, 'addData']);
-Route::get('showData',[UserController::class, 'showData']);
-Route::post('deleteData',[UserController::class, 'deleteData']);
-Route::post('editData',[UserController::class, 'editData']);
-Route::post('updateData',[UserController::class, 'updateData']);
-Route::post('getDetails',[UserController::class, 'getDetails']);
+Route::prefix('crud')->group(function()
+{
+    Route::view('index','index');
+    Route::post('add',[UserController::class, 'addData']);
+    Route::get('showData',[UserController::class, 'showData']);
+    Route::post('deleteData',[UserController::class, 'deleteData']);
+    Route::post('editData',[UserController::class, 'editData']);
+    Route::post('updateData',[UserController::class, 'updateData']);
+    Route::post('getDetails',[UserController::class, 'getDetails']);
+});
+
+Route::view('/login','login');
+Route::post('/login',[UserController::class, 'loginUser']);

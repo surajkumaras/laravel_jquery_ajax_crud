@@ -23,7 +23,7 @@ $(document).ready(function()
         function showData()
         {
             $.ajax({                            
-                url:'/showData',
+                url:'/crud/showData',
                 method:'get',
                 dataType:'json',
                 success:function(data)
@@ -93,7 +93,7 @@ $(document).ready(function()
 
 
             $.ajax({
-                url:'/add',
+                url:'/crud/add',
                 type:'post',
                 data: formData,
                 dataType: 'json',
@@ -152,7 +152,7 @@ $(document).ready(function()
                     if (willDelete) 
                     {
                         $.ajax({
-                            url:'/deleteData',
+                            url:'/crud/deleteData',
                             type:'post',
                             data:mydata,
                             dataType:'json',
@@ -203,7 +203,7 @@ $(document).ready(function()
             myData={id:id};
 
             $.ajax({
-                url:'/editData',
+                url:'/crud/editData',
                 method:'post',
                 data:myData,
                 dataType:'json',
@@ -222,7 +222,7 @@ $(document).ready(function()
                        var imageUrl = data.Data['avatar'];
                         if (imageUrl) 
                         {
-                             $("#previewImage").attr("src", 'images/' + imageUrl);
+                             $("#previewImage").attr("src", '/images/' + imageUrl);
                             //$("#previewImage").attr("src", '/images/' + imageUrl);
                             $("#previewImage").show(); // Show the image
                         } 
@@ -259,7 +259,7 @@ $(document).ready(function()
 
 
             $.ajax({
-                url:'/updateData',
+                url:'/crud/updateData',
                 type:'post',
                 data:formData,
                 dataType:'json',
@@ -299,7 +299,7 @@ $(document).ready(function()
             let id = $(this).attr("data-sid");
             console.log(id);
             $.ajax({
-                url:'getDetails',
+                url:'/crud/getDetails',
                 data:{id:id},
                 type:'post',
                 dataType:'json',
@@ -319,7 +319,7 @@ $(document).ready(function()
                         if (imageUrl) 
                         {
                             
-                            $("#imgID").attr("src", 'images/' + imageUrl);
+                            $("#imgID").attr("src", '/images/' + imageUrl);
                              $("#previewImage").show(); // Show the image
                         } 
                         else 

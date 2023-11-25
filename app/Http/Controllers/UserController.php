@@ -11,6 +11,14 @@ use Exception;
 
 class UserController extends Controller
 {
+    public function loginUser(Request $req)
+    {
+        return $req->all();
+    }
+
+
+
+
      //*************** FETCH ALL RECORD *********** *//
      public function showData()
      {
@@ -18,7 +26,7 @@ class UserController extends Controller
  
          if($data->count() >0)
          {
-            return response()->json(['status'=>200,'Data'=>$data]);
+            return response()->json(['status'=>200,'msg'=>'Data found','Data'=>$data]);
          }
          else 
          {
