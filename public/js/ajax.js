@@ -222,9 +222,8 @@ $(document).ready(function()
                        var imageUrl = data.Data['avatar'];
                         if (imageUrl) 
                         {
-                             $("#previewImage").attr("src", '/images/' + imageUrl);
-                            //$("#previewImage").attr("src", '/images/' + imageUrl);
-                            $("#previewImage").show(); // Show the image
+                            $("#previewImage").attr("src", '/images/' + imageUrl);
+                            $("#previewImage").show(); 
                         } 
                         else 
                         {
@@ -336,4 +335,25 @@ $(document).ready(function()
                 }
             })
         })
+
+        //********************** LOG OUT **************** *//
+        $(".log-out").on('click', function()
+        {
+            swal({
+                title: "Would you like to Logout?",
+                text: "Are you sure?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) 
+                {
+                  window.location.href="/logout";
+                } 
+                else {
+                  swal("welcome back!");
+                }
+              });
+        });
 });

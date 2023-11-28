@@ -14,12 +14,14 @@ class UserController extends Controller
     public function loginUser(Request $req)
     {
         return $req->all();
+
+        $req->session()->put('user',$req['email']);
+
+        return response()->json(['status'=>200,'msg'=>'login successful']);
+        
     }
 
-
-
-
-     //*************** FETCH ALL RECORD *********** *//
+    //*************** FETCH ALL RECORD *********** *//
      public function showData()
      {
          $data = User::all();

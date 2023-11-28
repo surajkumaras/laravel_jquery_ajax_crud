@@ -17,6 +17,7 @@
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal" id="ModalButton">
             Add new
         </button>
+        <button class="btn btn-warning log-out">Logout</button>
     <table class="table">
     <thead class="thead-dark">
         <tr>

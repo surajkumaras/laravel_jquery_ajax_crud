@@ -15,7 +15,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::prefix('crud')->group(function()
@@ -29,5 +29,24 @@ Route::prefix('crud')->group(function()
     Route::post('getDetails',[UserController::class, 'getDetails']);
 });
 
-Route::view('/login','login');
+//Route::view('/login','login');
 Route::post('/login',[UserController::class, 'loginUser']);
+Route::get('/loginUser', function()
+{
+    if(session()->has('user'))
+    {
+        return redirect('crud/index');
+    }
+    else 
+    {
+        return view('/login');
+    }
+});
+Route::get('/logout',function()
+{
+    if(session()->has('user'))
+    {
+        session()->pull('user');
+    }
+    return view('/login');
+});
