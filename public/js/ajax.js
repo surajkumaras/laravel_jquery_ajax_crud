@@ -19,11 +19,23 @@ $(document).ready(function()
         {
             $('.tit').text('Add New Record');
         })
+
+        
+        $(".add-new").click(function()
+        {
+            $(":input").val("");
+            $("#previewImage").attr("src", '');
+        })
         //***************************** FETCH ALL RECORD ****************** *//
+
+        
+        
+
         function showData()
         {
+            
             $.ajax({                            
-                url:'/crud/showData',
+                url:'/showData',
                 method:'get',
                 dataType:'json',
                 success:function(data)
@@ -35,7 +47,7 @@ $(document).ready(function()
                         $.each(data.Data, function(index,item){
                             let row = '<tr><th scope="row">' +
                                     item.id +
-                                    '</th><td>' +
+                                    '</th><td>' +'<img style="width:50px;heigth:50px;" src="images/'+item.avatar+'"></td><td>'+
                                     item.name +
                                     '</td><td>' +
                                     item.email +
@@ -49,6 +61,7 @@ $(document).ready(function()
                                     '<button class="btn btn-warning btn-edt" data-sid="'+item.id+'" data-toggle="modal" data-target="#exampleModal">Edit</button> <button class="btn btn-danger btn-del" data-sid="'+item.id+'">Delete</button>'+
                                     '</td></tr>';
                             $('#tbl').append(row);
+                            
                             
                         });
                     }
@@ -93,7 +106,7 @@ $(document).ready(function()
 
 
             $.ajax({
-                url:'/crud/add',
+                url:'/add',
                 type:'post',
                 data: formData,
                 dataType: 'json',
@@ -152,8 +165,8 @@ $(document).ready(function()
                     if (willDelete) 
                     {
                         $.ajax({
-                            url:'/crud/deleteData',
-                            type:'post',
+                            url:'/deleteData',
+                            type:'delete',
                             data:mydata,
                             dataType:'json',
                             success:function(data)
@@ -203,7 +216,7 @@ $(document).ready(function()
             myData={id:id};
 
             $.ajax({
-                url:'/crud/editData',
+                url:'/editData',
                 method:'post',
                 data:myData,
                 dataType:'json',
@@ -228,7 +241,7 @@ $(document).ready(function()
                         else 
                         {
                             $("#previewImage").attr("src", 'images/user1.jpeg');
-                            // $("#previewImage").hide(); 
+                             $("#previewImage").hide(); 
                         }
 
                     }
@@ -258,7 +271,7 @@ $(document).ready(function()
 
 
             $.ajax({
-                url:'/crud/updateData',
+                url:'/updateData',
                 type:'post',
                 data:formData,
                 dataType:'json',
@@ -298,7 +311,7 @@ $(document).ready(function()
             let id = $(this).attr("data-sid");
             console.log(id);
             $.ajax({
-                url:'/crud/getDetails',
+                url:'/getDetails',
                 data:{id:id},
                 type:'post',
                 dataType:'json',

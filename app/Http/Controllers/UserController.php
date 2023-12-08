@@ -11,9 +11,10 @@ use Exception;
 
 class UserController extends Controller
 {
+    //****************  LOGIN ******************* */
     public function loginUser(Request $req)
     {
-        return $req->all();
+        //return $req->all();
 
         $req->session()->put('user',$req['email']);
 
@@ -25,7 +26,7 @@ class UserController extends Controller
      public function showData()
      {
          $data = User::all();
- 
+        //  return $data;
          if($data->count() >0)
          {
             return response()->json(['status'=>200,'msg'=>'Data found','Data'=>$data]);
@@ -42,8 +43,6 @@ class UserController extends Controller
          //return $req;
 
          try {
-                
-
                 $validator = Validator::make($req->all(),[      // <--- VALIDATION CHECK ----<<
                     'name' => 'required|min:3',
                     'email' => 'required|email',
@@ -102,7 +101,7 @@ class UserController extends Controller
  
      }
  
-     //*************** FETCH ALL RECORD *********** *//
+     //*************** DELETE A SPECIFIC RECORD *********** *//
  
      public function deleteData(Request $req)
      {
@@ -193,6 +192,7 @@ class UserController extends Controller
          }
      }
 
+     //********** DETAILS OF SPECIFIC USER ********* */
      public function getDetails(Request $req)
      {
          

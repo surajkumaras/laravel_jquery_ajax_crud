@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <h1>Login Form</h1>
-        <form action="/login" method="post" id="loginfrm">
+        <form method="post" id="loginfrm">
             @csrf
             <div class="form-group">
               <label for="email">Email address</label>
@@ -34,35 +34,35 @@
 </html>
 
 <script>
-// $(document).ready(function()
-// {
-//     $("#loginfrm").on('submit',function(e)
-//     {
-//         e.preventDefault();
+$(document).ready(function()
+{
+    $("#loginfrm").on('submit',function(e)
+    {
+        e.preventDefault();
 
-//         let formData = $("#loginfrm").serialize();
-//         console.log(formData);
+        let formData = $("#loginfrm").serialize();
+        console.log(formData);
 
-//         $.ajax({
-//             url:'/login',
-//             method:'post',
-//             data:formData,
-//             dataType:'json',
-//             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-//             success:function(data)
-//             {
-//                 console.log(data);
+        $.ajax({
+            url:'/login',
+            method:'post',
+            data:formData,
+            dataType:'json',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success:function(data)
+            {
+                console.log(data);
 
-//                 if(data.status === 200)
-//                 {
-//                     window.location.href="/crud/index";
-//                 }
-//             },
-//             error:function(e)
-//             {
-//                 console.log(e);
-//             }
-//         });
-//     });
-// });
-// </script>
+                if(data.status === 200)
+                {
+                    window.location.href="/crud/index";
+                }
+            },
+            error:function(e)
+            {
+                console.log(e);
+            }
+        });
+    });
+});
+</script>

@@ -18,18 +18,30 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::prefix('crud')->group(function()
+//Route::view('index','index');
+// Route::post('add',[UserController::class, 'addData']);
+// Route::get('showData',[UserController::class, 'showData']);
+// Route::post('deleteData',[UserController::class, 'deleteData']);
+// Route::post('editData',[UserController::class, 'editData']);
+// Route::post('updateData',[UserController::class, 'updateData']);
+// Route::post('getDetails',[UserController::class, 'getDetails']);
+
+Route::prefix('crud')->group(function()  //<--- Common group for curd prefix ---<<
 {
-    Route::view('index','index');
-    Route::post('add',[UserController::class, 'addData']);
-    Route::get('showData',[UserController::class, 'showData']);
-    Route::post('deleteData',[UserController::class, 'deleteData']);
-    Route::post('editData',[UserController::class, 'editData']);
-    Route::post('updateData',[UserController::class, 'updateData']);
-    Route::post('getDetails',[UserController::class, 'getDetails']);
+    
 });
 
-//Route::view('/login','login');
+Route::controller(UserController::class)->group(function()  //<--- Comman UserController group for route ---<<
+{
+    Route::post('add','addData');
+    Route::get('showData','showData');
+    Route::delete('deleteData','deleteData');
+    Route::post('editData','editData');
+    Route::post('updateData','updateData');
+    Route::post('getDetails','getDetails');
+});
+
+Route::view('/login','login');
 Route::post('/login',[UserController::class, 'loginUser']);
 Route::get('/loginUser', function()
 {
@@ -49,4 +61,10 @@ Route::get('/logout',function()
         session()->pull('user');
     }
     return view('/login');
+});
+
+
+Route::get('/details',function()
+{
+    return view('details');
 });
